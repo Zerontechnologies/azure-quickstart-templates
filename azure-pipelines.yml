@@ -18,7 +18,7 @@ steps:
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'azuredeploycon'
-    subscriptionId: 'cdaf6427-6a3c-4a97-9ea7-a442e421d25d'
+    subscriptionId: '$(subscriptionId)'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'ARMPipelinesLAMP-rg'
     location: 'West US'
