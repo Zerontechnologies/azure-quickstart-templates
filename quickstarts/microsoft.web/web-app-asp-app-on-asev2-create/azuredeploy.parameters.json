@@ -11,6 +11,9 @@
     "appServiceEnvironmentName": {
       "value": "GET-PREREQ-aseName"
     },
+    "location": {
+      "value": "West US"
+    },
     "pricingTier": {
       "value": "1"
     },
