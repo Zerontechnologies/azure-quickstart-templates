@@ -20,66 +20,66 @@
                 "description": "The name of the App Service Environment where the app service plan will be created."
             }
         },
-        "location": {
+        "existingAseLocation": {
             "type": "string",
             "metadata": {
-                "description": "Set this to the same location as the app service environment"
+                "description": "Set this to the same location as the App Service Environment"
             }
         },
-        "pricingTier": {
+        "workerPool": {
             "type": "string",
             "allowedValues": [
                 "1",
                 "2",
-                "3",
+                "3"
             ],
-            "defaultValue": "1",
+            "defaultValue": 0,
             "metadata": {
-                "description": "Defines pricing tier for workers: 1 = Isolated 1, 2 = Isolated 2, 3 = Isolated 3."
+                "description": "Defines which worker pool's (WP1, WP2 or WP3) resources will be used for the app service plan."
             }
         },
-        "capacity": {
+        "numberOfWorkersFromWorkerPool": {
             "type": "int",
             "defaultValue": 1,
             "metadata": {
-                "description": "Defines the number of instances that will be allocated to the app service plan."
+                "description": "Defines the number of workers from the worker pool that will be used by the app service plan."
             }
         }
     },
     "resources": [
         {
-            "apiVersion": "2020-06-01",
+            "apiVersion": "2020-12-01",
             "name": "[parameters('appServicePlanName')]",
             "type": "Microsoft.Web/serverfarms",
-            "location": "[parameters('location')]",
+            "location": "[parameters('existingAseLocation')]",
             "properties": {
                 "name": "[parameters('appServicePlanName')]",
                 "hostingEnvironmentProfile": {
-                    "id": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('appServiceEnvironmentName'))]"
+                     "id": "[resourceId('Microsoft.Web/hostingEnvironments',parameters('appServiceEnvironmentName'))]"
                 }
             },
             "sku": {
-                "name": "[concat('I',parameters('pricingTier'))]",
+                "name" : "[concat('I',parameters('workerPool'))]",
                 "tier": "Isolated",
-                "size": "[concat('I',parameters('pricingTier'))]",
-                "family": "I",
-                "capacity": "[parameters('capacity')]"
+                "size": "[concat('I',parameters('workerPool'))]",
+                "family": "P",
+                "capacity": "[parameters('numberOfWorkersFromWorkerPool')]"
             }
         },
         {
-            "apiVersion": "2020-06-01",
+            "apiVersion": "2020-12-01",
             "name": "[parameters('siteName')]",
             "type": "Microsoft.Web/sites",
-            "location": "[parameters('location')]",
+            "location": "[parameters('existingAseLocation')]",
             "properties": {
                 "name": "[parameters('siteName')]",
-                "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('appServicePlanName'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverFarms',parameters('appServicePlanName'))]",
                 "hostingEnvironmentProfile": {
-                    "id": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('appServiceEnvironmentName'))]"
+                     "id": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('appServiceEnvironmentName'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverFarms/', parameters('appServicePlanName'))]"
+                "[resourceId('Microsoft.Web/serverFarms/',parameters('appServicePlanName'))]"
             ]
         }
     ]
