@@ -33,7 +33,7 @@ jobs:
       csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
       csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
       #overrideParameters: '-aseName $(aseName)'
-      overrideParameters: '-siteName $(siteName) -aseName $(aseName) -appServicePlanName $(appServicePlanName) -appServiceEnvironmentName $(appServiceEnvironmentName)'
+      overrideParameters: '-siteName $(siteName) -appServicePlanName $(appServicePlanName) -appServiceEnvironmentName $(appServiceEnvironmentName)'
       #overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
       deploymentMode: 'Incremental'
       
