@@ -33,10 +33,8 @@
                 "1",
                 "2",
                 "3",
-                "1V1",
-                "1V2"
             ],
-            "defaultValue": "1V2",
+            "defaultValue": "1",
             "metadata": {
                 "description": "Defines pricing tier for workers: 1 = Isolated 1, 2 = Isolated 2, 3 = Isolated 3."
             }
