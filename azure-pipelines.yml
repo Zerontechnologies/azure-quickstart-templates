@@ -4,31 +4,36 @@ variables:
 trigger:
 - none
 
-pool:
-  #vmImage: 'ubuntu-latest'
-  name: MyAgentPool
+jobs:
+- job: Inrule
+  displayName:  InRule Deployment
+  timeoutInMinutes: 240
+  pool:
+    #vmImage: 'ubuntu-latest'
+    name: MyAgentPool
   
-steps:
-- task: CopyFiles@2
-  inputs:
-    #SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
-    SourceFolder: 'quickstarts/microsoft.web/web-app-asp-app-on-asev2-create/prereqs/'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'azuredeploycon'
-    #azureSubscription: '$(subscriptionId)'
-    action: 'Create Or Update Resource Group'
-    #resourceGroupName: 'tim-rg'
-    resourceGroupName: 'ARMPipelinesLAMP-rg'
-    location: 'West US'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(Build.ArtifactStagingDirectory)/prereq.azuredeploy.json'
-    csmParametersFile: '$(Build.ArtifactStagingDirectory)/prereq.azuredeploy.parameters.json'
-    overrideParameters: '-aseName $(aseName)'
-    #overrideParameters: '-siteName $(siteName) -aseName $(aseName) -appServicePlanName $(appServicePlanName) -appServiceEnvironmentName $(appServiceEnvironmentName)'
-    #overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
-    deploymentMode: 'Incremental'
+  steps:
+  - task: CopyFiles@2
+    inputs:
+      #SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
+      SourceFolder: 'quickstarts/microsoft.web/web-app-asp-app-on-asev2-create/prereqs/'
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      
+  - task: AzureResourceManagerTemplateDeployment@3
+    inputs:
+      deploymentScope: 'Resource Group'
+      azureResourceManagerConnection: 'azuredeploycon'
+      #azureSubscription: '$(subscriptionId)'
+      action: 'Create Or Update Resource Group'
+      #resourceGroupName: 'tim-rg'
+      resourceGroupName: 'ARMPipelinesLAMP-rg'
+      location: 'West US'
+      templateLocation: 'Linked artifact'
+      csmFile: '$(Build.ArtifactStagingDirectory)/prereq.azuredeploy.json'
+      csmParametersFile: '$(Build.ArtifactStagingDirectory)/prereq.azuredeploy.parameters.json'
+      overrideParameters: '-aseName $(aseName)'
+      #overrideParameters: '-siteName $(siteName) -aseName $(aseName) -appServicePlanName $(appServicePlanName) -appServiceEnvironmentName $(appServiceEnvironmentName)'
+      #overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
+      deploymentMode: 'Incremental'
+      
