@@ -1,24 +1,21 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "siteName": {
-      "value": "GEN-UNIQUE"
-    },
-    "appServicePlanName": {
-      "value": "GEN-UNIQUE"
-    },
-    "appServiceEnvironmentName": {
-      "value": "GET-PREREQ-aseName"
-    },
-    "location": {
-      "value": "West US"
-    },
-    "pricingTier": {
-      "value": "1"
-    },
-    "capacity": {
-      "value": 1
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "siteName": {
+            "value": "GEN-UNIQUE-10"
+        },
+        "appServicePlanName": {
+            "value": "GEN-UNIQUE-11"
+        },
+        "appServiceEnvironmentName": {
+            "value": "GET-PREREQ-appServiceEnvironmentName"
+        },
+        "existingAseLocation": {
+            "value": "West US"
+        },
+        "workerPool": {
+            "value": "1"
+        }
     }
-  }
 }
