@@ -10,7 +10,8 @@ pool:
 steps:
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
+    #SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
+    SourceFolder: 'quickstarts/microsoft.web/webapp-app-asp-app-on-asev2-create/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
@@ -18,7 +19,7 @@ steps:
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'azuredeploycon'
-    azureSubscription: '$(subscriptionId)'
+    #azureSubscription: '$(subscriptionId)'
     action: 'Create Or Update Resource Group'
     resourceGroupName: 'ARMPipelinesLAMP-rg'
     location: 'West US'
