@@ -32,7 +32,8 @@
             "allowedValues": [
                 "1",
                 "2",
-                "3"
+                "3",
+                "1V1
             ],
             "defaultValue": "1",
             "metadata": {
