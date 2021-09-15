@@ -1,5 +1,5 @@
 variables:
-  ARM_PASS: $(adminpass)
+  #ARM_PASS: $(adminpass)
 
 trigger:
 - none
@@ -26,5 +26,6 @@ steps:
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
     csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
-    overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
+    overrideParameters: '-siteName $(siteName)'
+    #overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
     deploymentMode: 'Incremental'
