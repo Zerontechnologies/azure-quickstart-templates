@@ -16,7 +16,7 @@ jobs:
   - task: CopyFiles@2
     inputs:
       #SourceFolder: 'quickstarts/microsoft.web/webapp-linux-managed-mysql/'
-      SourceFolder: 'quickstarts/microsoft.web/web-app-asp-app-on-asev2-create/prereqs/'
+      SourceFolder: 'quickstarts/microsoft.web/web-app-asp-app-on-asev2-create/'
       Contents: '**'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
       
@@ -30,8 +30,8 @@ jobs:
       resourceGroupName: 'ARMPipelinesLAMP-rg'
       location: 'West US'
       templateLocation: 'Linked artifact'
-      csmFile: '$(Build.ArtifactStagingDirectory)/prereq.azuredeploy.json'
-      csmParametersFile: '$(Build.ArtifactStagingDirectory)/prereq.azuredeploy.parameters.json'
+      csmFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.json'
+      csmParametersFile: '$(Build.ArtifactStagingDirectory)/azuredeploy.parameters.json'
       overrideParameters: '-aseName $(aseName)'
       #overrideParameters: '-siteName $(siteName) -aseName $(aseName) -appServicePlanName $(appServicePlanName) -appServiceEnvironmentName $(appServiceEnvironmentName)'
       #overrideParameters: '-siteName $(siteName) -administratorLogin $(adminUser) -administratorLoginPassword $(ARM_PASS)'
